@@ -9,6 +9,7 @@ import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import MyCoursesScreen from './screens/MyCoursesScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import LoginSignUp from './screens/LoginSignUp';
 
 import UXFoundation from './screens/UXFoundation';
 import TeacherProfile from './screens/TeacherProfile';
@@ -51,7 +52,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="MyTabs">
+        <Stack.Navigator initialRouteName="LoginSignUp">
+          <Stack.Screen name="LoginSignUp" component={LoginSignUp} options={{headerShown: false}}  />
           <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
           <Stack.Screen name="UX Foundation" component={UXFoundation} />
           <Stack.Screen name="Teacher Profile" component={TeacherProfile} />
