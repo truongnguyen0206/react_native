@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,7 +17,10 @@ import TeacherProfile from './screens/TeacherProfile';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function MyTabs({ route }) {
+  const {email} = route.params; //Lay email từ route.params truyền từ LoginSignUp
+  
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -40,10 +43,12 @@ function MyTabs() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'Home' }} />
-      <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search' }} />
-      <Tab.Screen name="MyCourses" component={MyCoursesScreen} options={{ tabBarLabel: 'My Courses' }} />
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile' }} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false}}
+       initialParams={{ email }} //Truyền email từ MyTabs xuống HomeScreen thong qua initialParams 
+       />
+      <Tab.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="MyCourses" component={MyCoursesScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }

@@ -9,7 +9,7 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const goMyTabs = () =>{
-    navigation.navigate('MyTabs');
+    navigation.navigate('MyTabs', {email});
   }
 
     const DangNhap = async () => {
