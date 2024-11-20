@@ -1,22 +1,30 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
 
-const data = Array.from({ length: 200 }, (_, index) => ({ id: index, title: `Item ${index + 1}` }));
+import { View, Text, Button,StyleSheet } from 'react-native';
+import  ListCourse from '../Component/HomeScreen/ListCourse'
+import HeadHomeScreen from '../Component/HomeScreen/HeadHomeScreen'
+import { useEffect } from 'react';
 
-const HomeScreen = ({ navigation }) => {
+
+const HomeScreen = ({ navigation,route }) => {
+ // const {email} = route.params;
+  
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Màn hình chính</Text>
-      <Button
-        title="Đi đến UX Foundation"
-        onPress={() => navigation.navigate('UX Foundation')}
-      />
-      <Button
-        title="Đi đến Teacher Profile"
-        onPress={() => navigation.navigate('Teacher Profile')}
-      />
+    <View style={styles.container}>
+     <HeadHomeScreen
+     // email={email}
+     />
+     <ListCourse courseLevel={"basic"} headerText= 'Basic course' />
+     <ListCourse courseLevel={"advance"} headerText= 'Advance course' />
+      
+      
     </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '##cacaca',
+  },
+});
 
 export default HomeScreen;

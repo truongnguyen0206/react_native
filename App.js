@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,14 +9,20 @@ import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import MyCoursesScreen from './screens/MyCoursesScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import LoginSignUp from './screens/LoginSignUp';
 
 import UXFoundation from './screens/UXFoundation';
 import TeacherProfile from './screens/TeacherProfile';
+import CourseDetail from './screens/CourseDetail'
+import ChapterContent from './screens/ChapterContent';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function MyTabs({ route }) {
+ // const {email} = route.params; //Lay email từ route.params truyền từ LoginSignUp
+  
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -39,10 +45,12 @@ function MyTabs() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'Home' }} />
-      <Tab.Screen name="Search" component={SearchScreen} options={{ tabBarLabel: 'Search' }} />
-      <Tab.Screen name="MyCourses" component={MyCoursesScreen} options={{ tabBarLabel: 'My Courses' }} />
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{ tabBarLabel: 'Profile' }} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false}}
+       //initialParams={{ email }} //Truyền email từ MyTabs xuống HomeScreen thong qua initialParams 
+       />
+      <Tab.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="MyCourses" component={MyCoursesScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }
@@ -52,9 +60,12 @@ export default function App() {
     <View style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="MyTabs">
+          <Stack.Screen name="LoginSignUp" component={LoginSignUp} options={{headerShown: false}}  />
           <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
           <Stack.Screen name="UX Foundation" component={UXFoundation} />
           <Stack.Screen name="Teacher Profile" component={TeacherProfile} />
+          <Stack.Screen name="Course Detail" component={CourseDetail} />
+          <Stack.Screen name ="Chapter Contet" component={ChapterContent} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
