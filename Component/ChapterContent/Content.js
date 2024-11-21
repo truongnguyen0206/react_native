@@ -2,28 +2,34 @@ import { View, Text, FlatList, Dimensions, TouchableOpacity } from 'react-native
 import React, { useState, useRef } from 'react';
 import ContentItem from './ContentItem';
 import Input from './Input';
+import ProcessBar from './ProcessBar';  // Import ProcessBar
 
 export default function Content({ content }) {
   const [index, setIndex] = useState(0);  // Thêm state để quản lý chỉ mục hiện tại
   const contentRef = useRef(null);  // Sử dụng useRef để quản lý tham chiếu tới FlatList
 
+  // Hàm này sẽ cuộn tới mục tiếp theo
   const onNext = () => {
     // Kiểm tra và cập nhật chỉ mục nếu không vượt quá giới hạn của mảng
     if (index < content.length - 1) {
-      setIndex(index + 1);
-      contentRef.current.scrollToIndex({ animated: true, index: index + 1 });
+      const newIndex = index + 1;
+      setIndex(newIndex);  // Cập nhật index
+      contentRef.current.scrollToIndex({ animated: true, index: newIndex });  // Cuộn tới chỉ mục mới
     }
   };
 
   return content && (
     <View>
+      {/* Hiển thị ProcessBar */}
+      <ProcessBar contentLength={content.length} ContentIndex={index} />
+
       <FlatList 
         data={content}
         keyExtractor={(item) => item.id}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        ref={contentRef}
+        ref={contentRef}  // Đảm bảo ref được truyền đúng
         renderItem={({ item }) => (
           <View style={{ width: Dimensions.get('window').width, backgroundColor: 'white', padding: 10, borderRadius: 10, justifyContent: 'center' }}>
             <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{item.title}</Text>
@@ -32,7 +38,8 @@ export default function Content({ content }) {
             <Input content={item.content} />
             <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>Output: </Text>
             <Input content={item.output} />
-            <TouchableOpacity onPress={onNext} style={{ backgroundColor: 'blue', padding: 10, borderRadius: 10, marginRight: 10, marginBottom: 10, marginTop: 10, height: 30, width: 200, justifyContent: 'center', alignItems: 'center',alignSelf: 'center' }}> 
+            {/* Nút Next */}
+            <TouchableOpacity onPress={onNext} style={{ backgroundColor: 'blue', padding: 10, borderRadius: 10, marginRight: 10, marginBottom: 10, marginTop: 10, height: 50, width: 200, justifyContent: 'center', alignItems: 'center',alignSelf: 'center' }}> 
               <Text style={{ color: 'white' }}>Next</Text>
             </TouchableOpacity>
           </View>

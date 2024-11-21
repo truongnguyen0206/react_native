@@ -12,9 +12,8 @@ export default function ChapterContent() {
     param?.Content && (
       <ScrollView>
       <View style={{ padding: 16 }}>
-        <ProcessBar contentLength={param.Content.length} ContentIndex={currentIndex} /> 
-
-        <Content content={param.Content} onContentIndexChange={setCurrentIndex}/>
+         
+        <Content content={param.Content} />
       </View>
       </ScrollView>
     )

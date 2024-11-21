@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { TouchableOpacity } from "react-native";
 import { View, Text } from "react-native";
 import HeadCourseDetail from "../Component/CourseDetail/HeadCourseDetail";
-import { ScrollView } from "react-native-web";
+import { ScrollView } from "react-native";
 import ListChapter from "../Component/CourseDetail/ListChapter";
 
 export default function CourseDetail() {

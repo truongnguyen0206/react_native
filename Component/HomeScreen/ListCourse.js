@@ -10,7 +10,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import HeadListCourse from './HeadListCourse';
 export default function ListCourse({courseLevel, headerText}) {
 const [data,setData] = useState([]);
-const navigaton = useNavigation();
+const navigation = useNavigation();
 // {email} = useRoute().params.email; // lấy email từ route
 
 const handleUserControlCourse = async (item) => {
@@ -18,11 +18,11 @@ const handleUserControlCourse = async (item) => {
       const res = await checkUserControlCourse(item.id, 'hotanloc9516@gmail.com');
       if (res.length > 0) {
         // Đã tồn tại, điều hướng đến Course Detail
-        navigaton.navigate('Course Detail', { Course: item });
+        navigation.navigate('Course Detail', { Course: item });
       } else {
         // Chưa tồn tại, tạo mới
         await createUserControlCourse(item.id, 'hotanloc9516@gmail.com');
-        navigaton.navigate('Course Detail', { Course: item });
+        navigation.navigate('Course Detail', { Course: item });
       }
     } catch (error) {
       console.error(error);
