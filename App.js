@@ -11,8 +11,6 @@ import MyCoursesScreen from './screens/MyCoursesScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoginSignUp from './screens/LoginSignUp';
 
-import UXFoundation from './screens/UXFoundation';
-import TeacherProfile from './screens/TeacherProfile';
 import CourseDetail from './screens/CourseDetail'
 import ChapterContent from './screens/ChapterContent';
 
@@ -62,8 +60,6 @@ export default function App() {
         <Stack.Navigator initialRouteName="MyTabs">
           <Stack.Screen name="LoginSignUp" component={LoginSignUp} options={{headerShown: false}}  />
           <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
-          <Stack.Screen name="UX Foundation" component={UXFoundation} />
-          <Stack.Screen name="Teacher Profile" component={TeacherProfile} />
           <Stack.Screen name="Course Detail" component={CourseDetail} />
           <Stack.Screen name ="Chapter Contet" component={ChapterContent} />
         </Stack.Navigator>
