@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MyTabs({ route }) {
- // const {email} = route.params; //Lay email từ route.params truyền từ LoginSignUp
+ const {email} = route.params; //Lay email từ route.params truyền từ LoginSignUp
   
 
   return (
@@ -46,10 +46,12 @@ function MyTabs({ route }) {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false}}
-       //initialParams={{ email }} //Truyền email từ MyTabs xuống HomeScreen thong qua initialParams 
+       initialParams={{ email }} //Truyền email từ MyTabs xuống HomeScreen thong qua initialParams 
        />
       <Tab.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="MyCourses" component={MyCoursesScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="MyCourses" component={MyCoursesScreen} options={{ headerShown: false }} 
+      initialParams={{ email }} 
+      />
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
@@ -59,7 +61,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="MyTabs">
+        <Stack.Navigator initialRouteName="LoginSignUp">
           <Stack.Screen name="LoginSignUp" component={LoginSignUp} options={{headerShown: false}}  />
           <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
           <Stack.Screen name="UX Foundation" component={UXFoundation} />

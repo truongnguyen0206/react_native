@@ -2,7 +2,7 @@ import { Dimensions, View } from "react-native";
 import React from "react";
 
 export default function ProcessBar({ contentLength, ContentIndex }) {
-  const arraySize = Array.from({ length: contentLength }, (_, index) => index + 1);
+  const arraySize = Array.from({ length: contentLength }, (_, index) => index + 1 );
   const width = Dimensions.get("window").width/contentLength*0.8 // Set width as a percentage
   
   return (

@@ -3,7 +3,7 @@ import React,{useEffect,useState} from 'react';
 // import khi dùng dấu {} là import name nghĩa là từ file export dc gọi 
 //là const export hay export {a,b} còn import ko dấu {} gọi là export default và
 // export default chỉ dc 1 lần export trong 1 file
-import {createUserControlCourse, GetListCourses,checkUserControlCourse} from '../../Services/Hygraph'; 
+import {createUserControlCourse, GetListCourses,checkUserControlCourse, getMyCourses} from '../../Services/Hygraph'; 
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -29,9 +29,10 @@ const handleUserControlCourse = async (item) => {
     }
   };
 
-const getDataCourse = () =>{
-    GetListCourses(courseLevel).then((res) => {
-        console.log(res);
+const getcourse = () =>{
+    getMyCourses(Email).then((res) => {
+        // console.log(Email)
+       
         setData(res);
     }).catch((err) => {
         console.log(err);
@@ -39,20 +40,19 @@ const getDataCourse = () =>{
 }
 
 useEffect(() => {
-    getDataCourse();
+    getcourse();
 }, []);
 
 
     return (
         <View style={{marginLeft: 10}}>
-            <HeadListCourse text= {headerText} />
             <FlatList
                 data = {data}
                 keyExtractor={(item) => item.id}
                 renderItem={({item}) => {
                     return(
                     <TouchableOpacity  onPress={() => handleUserControlCourse(item) }>
-                        <View style={{padding:15, backgroundColor: 'white',borderRadius: 10,marginRight: 15}}>
+                        <View style={{padding:15, backgroundColor: 'white',borderRadius: 10,marginRight: 15,width: 180, alignSelf: 'center'}}>
                             <Image source={{uri: item.banner.url}} style={{width: 150, height: 100}}/>
                             <Text style={{paddingTop: 5}}>{item.name}</Text>
 
@@ -73,8 +73,9 @@ useEffect(() => {
                     </TouchableOpacity>
                     );
                 }}
-                showsHorizontalScrollIndicator ={false}
-                horizontal={true}
+                numColumns={2}
+                columnWrapperStyle={{ justifyContent: 'space-between' , marginBottom: 20}}
+               contentContainerStyle={{paddingVertical: 10}}
             />
         </View>
     );
