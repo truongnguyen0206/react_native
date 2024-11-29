@@ -11,8 +11,6 @@ import MyCoursesScreen from './screens/MyCoursesScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoginSignUp from './screens/LoginSignUp';
 
-import UXFoundation from './screens/UXFoundation';
-import TeacherProfile from './screens/TeacherProfile';
 import CourseDetail from './screens/CourseDetail'
 import ChapterContent from './screens/ChapterContent';
 
@@ -48,11 +46,15 @@ function MyTabs({ route }) {
       <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false}}
        initialParams={{ email }} //Truyền email từ MyTabs xuống HomeScreen thong qua initialParams 
        />
-      <Tab.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} 
+      initialParams={{ email }} 
+      />
       <Tab.Screen name="MyCourses" component={MyCoursesScreen} options={{ headerShown: false }} 
       initialParams={{ email }} 
       />
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} 
+      initialParams={{ email }} 
+      />
     </Tab.Navigator>
   );
 }
@@ -64,8 +66,6 @@ export default function App() {
         <Stack.Navigator initialRouteName="LoginSignUp">
           <Stack.Screen name="LoginSignUp" component={LoginSignUp} options={{headerShown: false}}  />
           <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
-          <Stack.Screen name="UX Foundation" component={UXFoundation} />
-          <Stack.Screen name="Teacher Profile" component={TeacherProfile} />
           <Stack.Screen name="Course Detail" component={CourseDetail} />
           <Stack.Screen name ="Chapter Contet" component={ChapterContent} />
         </Stack.Navigator>

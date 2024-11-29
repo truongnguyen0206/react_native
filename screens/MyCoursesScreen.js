@@ -12,6 +12,7 @@ const MyCoursesScreen = ({ navigation,route }) => {
      <HeadMyCourseScreen
      email={email}
      />
+     <Text style={styles.headerTitle}>My Courses</Text>
      <ListCourse headerText= 'Basic course' Email = {email} />
       
       
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
     
    
   },
+  headerTitle: { fontSize: 22, fontWeight: 'bold', textAlign: 'center', marginVertical: 16 },
 });
 
 export default MyCoursesScreen;
