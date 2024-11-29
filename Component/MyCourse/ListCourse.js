@@ -52,7 +52,7 @@ useEffect(() => {
                 renderItem={({item}) => {
                     return(
                     <TouchableOpacity  onPress={() => handleUserControlCourse(item) }>
-                        <View style={{padding:15, backgroundColor: 'white',borderRadius: 10,marginRight: 15,width: 180}}>
+                        <View style={{padding:15, backgroundColor: 'white',borderRadius: 10,marginRight: 15,width: 180, alignSelf: 'center'}}>
                             <Image source={{uri: item.banner.url}} style={{width: 150, height: 100}}/>
                             <Text style={{paddingTop: 5}}>{item.name}</Text>
 
@@ -73,8 +73,9 @@ useEffect(() => {
                     </TouchableOpacity>
                     );
                 }}
-                showsHorizontalScrollIndicator ={false}
-                
+                numColumns={2}
+                columnWrapperStyle={{ justifyContent: 'space-between' , marginBottom: 20}}
+               contentContainerStyle={{paddingVertical: 10}}
             />
         </View>
     );

@@ -14,7 +14,7 @@ const HomeScreen = ({ navigation,route }) => {
      email={email}
      />
      <ListCourse courseLevel={"basic"} headerText= 'Basic course' Email = {email} />
-     <ListCourse courseLevel={"advance"} headerText= 'Advance course' />
+     <ListCourse courseLevel={"advance"} headerText= 'Advance course' Email={{email}} />
       
       
     </View>
